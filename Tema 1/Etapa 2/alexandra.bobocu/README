@@ -1,0 +1,94 @@
+// Bobocu Alexandra-Florentina, 321CA
+
+Am inclus comentarii in cod pentru o intelegere mai buna a algoritmilor.
+
+FISIERELE DIN ARHIVA:
+
+1) Floyd-Warshall
+* floyd_warshall.c -> Fisier care contine implementarea algoritmului
+Floyd-Warshall. Link catre cod: 
+https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
+
+* floyd_warshall.h -> Fisier care contine semnaturile functiilor folosite in
+floyd_warshall.c.
+
+* test_floyd_warshall.c -> Fisier care contine testarea algoritmului
+Floyd-Warshall pe diferite inputuri.
+
+
+2) Dijkstra
+* dijkstra.c -> Fisier care contine implementarea algoritmului Dijkstra. Link catre cod:
+https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
+
+* dijkstra.h -> Fisier care contine semnaturile functiilor folosite in
+dijkstra.c.
+
+* test_dijkstra.c -> Fisier care contine testarea algoritmului Dijkstra pe
+diferite inputuri.
+
+
+3) Johnson
+* johnson.c -> Fisier care contine implementarea algoritmului Johnson. Am
+implementat si algoritmul Bellman-Ford. Link catre codul algoritmului Johnson:
+https://www.geeksforgeeks.org/johnsons-algorithm-for-all-pairs-shortest-paths-implementation/?ref=rp
+si catre codul algoritmului Bellman-Ford:
+https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/
+
+* johnson.h -> Fisier care contine semnaturile functiilor folosite in johnson.c.
+
+* test_johnson.c -> Fisier care contine testarea algoritmului Johnson pe
+diferite inputuri.
+
+
+4) Teste
+Testele au fost generate cu https://github.com/dimitriedavid/graph-generator
+
+Folderul in contine 25 de teste de intrare.
+Folderul out contine 25 de teste de iesire.
+
+Am generat teste cat mai variate. Numarul maxim de noduri si de muchii
+pentru algoritmul Johnson este 10999, iar numarul maxim de noduri si de
+muchii pentru algoritmii Floyd-Warshall si Dijkstra este 20999.
+
+TESTE MICI:
+-> Testele 19, 20, 21, 22 contin grafuri complete cu costuri pozitive;
+-> Testul 24 contine un graf cu cost negativ;
+-> Testele 23 si 25 contin grafuri cu cicluri negative;
+-> Testele 1, 2, 4, 5, 6, 17 contin grafuri ce au pana in 100 de noduri, cu
+costuri pozitive;
+-> Testul 3 contine un graf rar cu costuri pozitive;
+
+TESTE MARI:
+-> Testele 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18 contin grafuri cu un numar
+de noduri cuprins intre 100 si 1000 si cu un numar de muchii intre 1152 si 10993,
+cu costuri pozitive.
+
+
+5) Makefile
+Am respectat cerintele din enunt. Pentru regula run-best am ales algoritmul
+Johnson, deoarece chiar daca este cel mai lent algoritm dintre cei 3, reuseste
+sa acopere cu succes majoritatea cazurilor de grafuri, exceptie facand grafurile
+cu ciclu negativ, la care nu functioneaza corect niciun algoritm.
+In anumite situatii, este mai important ca algoritmul sa functioneze pe mai
+multe cazuri si nu sa ruleze in timp minim.
+
+
+6) Alte precizari:
+- In matricile de adiacenta in care nu exista drum intre 2 noduri afisez
+valoarea numerica a lui inf si anume 2147483647.
+- Pentru fiecare algoritm in parte, calculez strict timpii in care se efectueaza
+gasirea drumului minim. Afisez la consola timpul in secunde atunci cand
+un anumit algoritm a gasit drumurile minime cautate, sau afisez un mesaj sugestiv
+"Graf invalid!" atunci cand inputul nu este unul potrivit pentru algoritm.
+- In test23.out si test25.out din folderul out cei 3 algoritmi nu vor
+afisa o matrice de adiacenta, deoarece inputul primit este un graf cu
+ciclu negativ, iar cei 3 algoritmi nu functioneaza corect pe un astfel de caz.
+- In test24.out este matricea de adiacenta cu costuri pozitive, obtinuta in urma
+rularii algoritmului Johnson. Asemenea algoritmului Johnson,
+algoritmul Floyd-Warshall functioneaza pe grafuri cu costuri negative, insa spre
+deosebire de acesta, nu se recalculeaza costurile muchiilor astfel incat
+acestea sa fie pozitive, prin urmare matricea de adiacenta obtinuta in urma
+rularii algoritmului Floyd-Warshall va avea unele costuri negative si va fi
+diferita de matricea de adiacenta obtinuta dupa rularea celuilalt algoritm.
+Algoritmul Dijkstra nu functioneaza pe grafuri cu cost negativ, deci la
+rularea sa nu voi afisa nimic.
